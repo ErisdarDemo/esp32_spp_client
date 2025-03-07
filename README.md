@@ -1,13 +1,8 @@
-| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C5 | ESP32-C6 | ESP32-C61 | ESP32-H2 | ESP32-S3 |
-| ----------------- | ----- | -------- | -------- | -------- | -------- | --------- | -------- | -------- |
-
 # ESP-IDF SPP GATT CLIENT demo
 
-  In Bluetooth classic (BR/EDR) systems, a Serial Port Profile (SPP) is an adopted profile defined by the Bluetooth Special Interest Group (SIG) used to emulate a serial port connection over a Bluetooth wireless connection. For BLE systems, an adopted SPP profile over BLE is not defined, thus emulation of a serial port must be implemented as a vendor-specific custom profile.
+Two Demos, a server & client that connect and exchange data wirelessly with each other, using a BLE SPP
 
-  This reference design consists of two Demos, the ble spp server and ble spp client that run on their respective endpoints. These devices connect and exchange data wirelessly with each other. This capability creates a virtual serial link over the air. Each byte input can be sent and received by both the server and client. The spp server is implemented as the [ble_spp_server](../ble_spp_server) demo while the spp client is implemented as the [ble_spp_client](../ble_spp_client) demo. Espressif designed the BLE SPP applications to use the UART transport layer but you could adapt this design to work with other serial protocols, such as SPI.
-
-  This vendor-specific custom profile is implemented in [spp_client_demo.c](../ble_spp_client/main/spp_client_demo.c) and [spp_server_demo.c](../ble_spp_server/main/ble_spp_server_demo.c).
+- See ble_spp_server\README.md for more definition & description
 
 ## Setup
 
@@ -19,7 +14,34 @@
 
 	Dev: Espressif IDE
 
-- status: !working, server needs write access to ESP-IDF monitor and inspection of datastream for demo validation
+## Procedure
+
+@pre Boards unplugged, IDEs closed
+	
+- Connect boards & validate COM ports
+
+- Open both IDEs
+	
+- Open Espressif IDE client debug session halted at app_main()
+	
+- Open PuTTy to client serial port
+	
+- Launch VS Code server flash, open IDF Monitor 'Monitor Device' & confirm running 
+	
+- Resume Espressif debug session
+
+## Development Opens
+
+- Get Client UART Rx working (debug with LabVIEW? Why is it not catching the PuTTy tx?)
+
+- Get both serial streams open & working
+
+### Hardware Required
+
+* A development board with ESP32/ESP32-C3/ESP32-S3/ESP32-C2/ESP32-H2 SoC (e.g., ESP32-DevKitC, ESP-WROVER-KIT, etc.)
+* A USB cable for Power supply and programming
+
+See [Development Boards](https://www.espressif.com/en/products/devkits) for more information about it.
 
 ## How to Use Example
 
@@ -31,7 +53,11 @@ idf.py set-target <chip_name>
 
 ### Initialization
 
-  Both the server and client will first initialize the uart and ble. The server demo will set up the serial port service with standard GATT and GAP services in the attribute server. The client demo will scan the ble broadcast over the air to find the spp server.
+1. Both the server and client will first initialize the uart and ble
+
+- The server demo will set up the serial port service with standard GATT and GAP services in the attribute server
+
+- The client demo will scan the ble broadcast over the air to find the spp server
 
 ### Event Processing
 
@@ -169,3 +195,4 @@ if you input data to the Uart terminal, it will be printed in the remote device 
 ## Troubleshooting
 
 For any technical queries, please open an [issue](https://github.com/espressif/esp-idf/issues) on GitHub. We will get back to you soon.
+

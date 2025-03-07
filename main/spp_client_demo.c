@@ -5,13 +5,19 @@
  *
  *  @author   Justin Reina, Firmware Engineer
  *  @created  3/6/25
- *  @last rev 3/7/25
- *
- *
- *  @notes    x
+ *  @last rev 3/8/25
  *
  *  @section    Opens
- *      none current
+ *	    'r0' works
+ *	    'r1' is my publish
+ *	    		
+ *	    remove dev containers
+ *
+ *	    dirs 
+ *	    cmake form
+ *	    style
+ *	    main.c
+ *	    sys_init()			w/todo	consider relocation to system_initialize() in system module
  *
  *  @section    Legal Disclaimer
  *      © 2025 Justin Reina, All rights reserved. All contents of this source file and/or any other
