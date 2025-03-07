@@ -4,5 +4,22 @@
     "idf.toolsPathWin": "C:\\Users\\Justin\\.espressif",
     "idf.pythonInstallPath": "C:\\Users\\Justin\\.espressif\\tools\\idf-python\\3.11.2\\python.exe",
     "idf.portWin": "COM6",
-    "idf.flashType": "UART"
+    "idf.flashType": "UART",
+    "files.associations": {
+        "charconv": "c",
+        "chrono": "c",
+        "optional": "c",
+        "format": "c",
+        "ratio": "c",
+        "system_error": "c",
+        "array": "c",
+        "functional": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c",
+        "*.tcc": "c",
+        "regex": "c",
+        "esp_bt.h": "c",
+        "nvs_flash.h": "c"
+    }
 }
