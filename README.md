@@ -24,9 +24,11 @@ Two Demos, a server & client that connect and exchange data wirelessly with each
 	
 - Open Espressif IDE client debug session halted at app_main()
 	
-- Open PuTTy to client serial port
+- Open 'ble_spp_test - Client' to client serial port
 	
-- Launch VS Code server flash, open IDF Monitor 'Monitor Device' & confirm running 
+- Launch VS Code server flash, remove all IDF Monitor Devices to relase COM for next
+
+- Open 'ble_spp_test - Server' to client serial port
 	
 - Resume Espressif debug session
 
