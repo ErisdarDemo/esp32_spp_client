@@ -1,6 +1,6 @@
 /**************************************************************************************************/
 /** @file     ble_spp_client_demo.c
- *  @brief    This file is for ble spp client demo.
+ *  @brief    This file is for ble spp client demo
  *  @details  x
  *
  *  @author   Justin Reina, Firmware Engineer
@@ -11,12 +11,12 @@
  *	    'r0' works
  *	    'r1' is my publish
  *
- *	@section 	Opens]
+ *	@section 	Opens
+ *		reloc main.c
  *	    dirs 
  *	    cmake form
- *	    style
- *	    main.c
  *	    sys_init()			w/todo	consider relocation to system_initialize() in system module
+ *		printf()) down the control flow path from uart-char-svr_in to .... uart-char-cl_out
  *
  *  @section    Legal Disclaimer
  *      © 2025 Justin Reina, All rights reserved. All contents of this source file and/or any other
@@ -28,8 +28,6 @@
  *      SPDX-License-Identifier: Unlicense OR CC0-1.0
  */
 /**************************************************************************************************/
-
-
 
 
 //************************************************************************************************//
