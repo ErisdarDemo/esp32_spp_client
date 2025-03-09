@@ -908,52 +908,69 @@ static void spp_uart_init(void) {
 void app_main(void) {
 
     //Locals
-    esp_err_t ret;
+    esp_err_t ret;									/* sdk status resp                            */
 
 
-    ESP_ERROR_CHECK(esp_bt_controller_mem_release(ESP_BT_MODE_CLASSIC_BT));
+	//--------------------------------------- Config Prep ----------------------------------------//
+	//Free
+	ret = esp_bt_controller_mem_release(ESP_BT_MODE_CLASSIC_BT);
 
-    esp_bt_controller_config_t bt_cfg = BT_CONTROLLER_INIT_CONFIG_DEFAULT();
+	//Check
+    ESP_ERROR_CHECK(ret);
 
+	//Setup
+    esp_bt_controller_config_t bt_cfg = BT_CONTROLLER_INIT_CONFIG_DEFAULT();  /* a big macro init */
+
+	//Init
     nvs_flash_init();
+       
     
-    
+    //-------------------------------------- Controller Init -------------------------------------//
     ret = esp_bt_controller_init(&bt_cfg);
-    
-    if (ret) {
+        
+    //Safety
+    if (ret !=  ESP_OK) { 
         ESP_LOGE(GATTC_TAG, "%s enable controller failed: %s", __func__, esp_err_to_name(ret));
         return;
     }
+    
 
-
+	//------------------------------------- Controller Enable ------------------------------------//
     ret = esp_bt_controller_enable(ESP_BT_MODE_BLE);
     
-    if (ret) {
+    //Safety
+    if (ret !=  ESP_OK) {
         ESP_LOGE(GATTC_TAG, "%s enable controller failed: %s", __func__, esp_err_to_name(ret));
         return;
     }
 
-    ESP_LOGI(GATTC_TAG, "%s init bluetooth", __func__);
 
+	//-------------------------------------- Bluetooth Init --------------------------------------//
+    ESP_LOGI(GATTC_TAG, "%s init bluetooth", __func__);
 
     ret = esp_bluedroid_init();
     
-    if (ret) {
+    //Safety
+    if (ret !=  ESP_OK) {
         ESP_LOGE(GATTC_TAG, "%s init bluetooth failed: %s", __func__, esp_err_to_name(ret));
         return;
     }
     
     
+	//------------------------------------- Bluetooth Enable -------------------------------------//    
     ret = esp_bluedroid_enable();
     
+    //Safety
     if (ret) {
         ESP_LOGE(GATTC_TAG, "%s enable bluetooth failed: %s", __func__, esp_err_to_name(ret));
         return;
     }
     
 
+	//---------------------------------- Bluetooth Client Register -------------------------------//  
     ble_client_appRegister();
     
+    //Open SPP
     spp_uart_init();
 
     return;
